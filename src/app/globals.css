@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Lato:wght@300;400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Variables ─────────────────────────────────────────────────────────────── */
+:root {
+  --gold: #FFB41F;
+  --terracotta: #AF5746;
+  --cobalt: #4774A1;
+  --cream: #FAF7F2;
+  --dark: #2C2A25;
+}
+
+/* ── Base ──────────────────────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: var(--cream);
+  color: var(--dark);
+  font-family: 'Lato', system-ui, sans-serif;
+}
+
+/* ── Scroll-reveal ─────────────────────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Ornement décoratif ────────────────────────────────────────────────────── */
+.ornament {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  justify-content: center;
+}
+.ornament::before,
+.ornament::after {
+  content: '';
+  display: block;
+  height: 1px;
+  width: 60px;
+  background: linear-gradient(to right, transparent, var(--gold));
+}
+.ornament::after {
+  background: linear-gradient(to left, transparent, var(--gold));
+}
+
+/* Variante terracotta */
+.ornament-terracotta {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  justify-content: center;
+}
+.ornament-terracotta::before,
+.ornament-terracotta::after {
+  content: '';
+  display: block;
+  height: 1px;
+  width: 60px;
+}
+.ornament-terracotta::before {
+  background: linear-gradient(to right, transparent, var(--terracotta));
+}
+.ornament-terracotta::after {
+  background: linear-gradient(to left, transparent, var(--terracotta));
+}
+
+/* ── Hero ──────────────────────────────────────────────────────────────────── */
+.hero-bg {
+  background-image: url('/images/lavande-drome.jpg');
+  background-size: cover;
+  background-position: center;
+}
+@media (min-width: 768px) {
+  .hero-bg {
+    background-attachment: fixed;
+  }
+}
+
+/* ── Galerie hover ─────────────────────────────────────────────────────────── */
+.gallery-item {
+  overflow: hidden;
+}
+.gallery-item img {
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.gallery-item:hover img {
+  transform: scale(1.08);
+}
+
+/* ── Bounce scroll indicator ───────────────────────────────────────────────── */
+@keyframes bounceY {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(10px); }
+}
+.bounce-anim {
+  animation: bounceY 2s ease-in-out infinite;
+}
+
+/* ── Button base ───────────────────────────────────────────────────────────── */
+.btn-gold {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  background-color: var(--gold);
+  color: var(--dark);
+  font-family: 'Lato', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-gold:hover {
+  background-color: #e6a200;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 180, 31, 0.35);
+}
+.btn-gold:active {
+  transform: translateY(0);
+}
+
+.btn-outline {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  background-color: transparent;
+  color: var(--dark);
+  font-family: 'Lato', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border: 1.5px solid var(--gold);
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+.btn-outline:hover {
+  background-color: var(--gold);
+  transform: translateY(-2px);
+}
+
+/* ── Timeline ──────────────────────────────────────────────────────────────── */
+.timeline-event {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.timeline-event:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(44, 42, 37, 0.1);
+}
+
+/* ── Cards ─────────────────────────────────────────────────────────────────── */
+.info-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.info-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(44, 42, 37, 0.1);
+}
+
+/* ── Form ──────────────────────────────────────────────────────────────────── */
+.form-input {
+  width: 100%;
+  background: #fff;
+  border: 1.5px solid #e2d9cc;
+  padding: 0.875rem 1rem;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.9rem;
+  color: var(--dark);
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+.form-input:focus {
+  border-color: var(--gold);
+}
+.form-input::placeholder {
+  color: #a89a8a;
+}
